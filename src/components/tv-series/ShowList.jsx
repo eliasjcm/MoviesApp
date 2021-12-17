@@ -11,11 +11,11 @@ import "react-alice-carousel/lib/alice-carousel.css";
 
 const handleDragStart = (e) => e.preventDefault();
 
-const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-};
+// const responsive = {
+//   0: { items: 1 },
+//   568: { items: 2 },
+//   1024: { items: 3 },
+// };
 
 export const ShowList = ({ showList }) => {
   const shows = showList.map((show) => {
@@ -31,16 +31,6 @@ export const ShowList = ({ showList }) => {
       />
     );
   });
-
-  const renderNextBtn = ({ isDisabled }) => {
-    return (
-      <img
-        src="./assets/icons/another.svg"
-        alt=""
-        className="carousel-arrow-right"
-      />
-    );
-  };
 
   const renderNextButton = ({ isDisabled }) => {
     return (

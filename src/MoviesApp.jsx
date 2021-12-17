@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { MovieCard } from "./components/movies/MovieCard";
+// import { MovieCard } from "./components/movies/MovieCard";
 import { MovieList } from "./components/movies/MovieList";
 import { ShowList } from "./components/tv-series/ShowList";
 import { AppFrame } from "./components/ui/AppFrame";
-import { CategoryFrame } from "./components/ui/CategoryFrame";
+// import { CategoryFrame } from "./components/ui/CategoryFrame";
 import { PosterSection } from "./components/ui/PosterSection";
-import { movies } from "./data/movies";
-import { shows } from "./data/shows";
+// import { movies } from "./data/movies";
+// import { shows } from "./data/shows";
 
 export const MoviesApp = () => {
   const [movieList, setMovieList] = useState([]);

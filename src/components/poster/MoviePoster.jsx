@@ -1,7 +1,7 @@
 import React from "react";
 import { movieGenres } from "../../data/movies";
 
-import { ratingToStarsNumber } from "../../utils/ratingToStarsNumber";
+// import { ratingToStarsNumber } from "../../utils/ratingToStarsNumber";
 import { CategoryFrame } from "../ui/CategoryFrame";
 import { RatingStars } from "../ui/RatingStars";
 

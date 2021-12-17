@@ -11,12 +11,6 @@ import "react-alice-carousel/lib/alice-carousel.css";
 
 const handleDragStart = (e) => e.preventDefault();
 
-const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
-  1024: { items: 3 },
-};
-
 export const MovieList = ({ movieList }) => {
   const movies = movieList.map((movie) => {
     return (
@@ -30,16 +24,6 @@ export const MovieList = ({ movieList }) => {
       />
     );
   });
-
-  const renderNextBtn = ({ isDisabled }) => {
-    return (
-      <img
-        src="./assets/icons/another.svg"
-        alt=""
-        className="carousel-arrow-right"
-      />
-    );
-  };
 
   const renderNextButton = ({ isDisabled }) => {
     return (

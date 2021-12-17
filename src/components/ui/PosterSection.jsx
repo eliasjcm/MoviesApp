@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "../../MoviesApp.css";
 import { MoviePoster } from "../poster/MoviePoster";
 
 export const PosterSection = ({ movieList }) => {
-  const [currentMovies, setCurrentMovies] = useState(movieList);
+  const [currentMovies /*, setCurrentMovies*/] = useState(movieList);
   const movies = currentMovies
     .sort(() => 0.5 - Math.random())
     .slice(0, 3)
