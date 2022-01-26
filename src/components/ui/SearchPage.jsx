@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+// import { useLocation, useNavigate } from "react-router-dom";
 import { Waypoint } from "react-waypoint";
 import { MovieCard } from "../movies/MovieCard";
 import { AppFrame } from "./AppFrame";
-import queryString from "query-string";
+// import queryString from "query-string";
 
 export const SearchPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   const [statusState, setStatusState] = useState("");
 
@@ -77,8 +77,8 @@ export const SearchPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("fetching");
-      console.log(searchInfo);
+      // console.log("fetching");
+      // console.log(searchInfo);
       await handleSearch();
     };
     fetchData();

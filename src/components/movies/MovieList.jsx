@@ -6,7 +6,6 @@ import { MovieCard } from "./MovieCard";
 /*
 
 */
-import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { ItemsCarousel } from "../ui/ItemsCarousel";
 

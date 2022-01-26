@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { movieGenres } from "../../data/movies";
+// import { movieGenres } from "../../data/movies";
 import { PersonCard } from "../people/PersonCard";
 import { AppFrame } from "../ui/AppFrame";
 import { CategoryFrame } from "../ui/CategoryFrame";
@@ -61,16 +61,13 @@ export const MovieScreen = () => {
         const resultPeople = await peopleReq.json();
         console.log("resultPeople", resultPeople);
         setCrewState(resultPeople.cast);
-        setStatusState({
-          status: "error",
-        });
       } catch (err) {
         console.log("ErrorSA");
       }
     };
 
     fetchData();
-  }, []);
+  }, [movieId]);
 
   return (
     <>
