@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
+import { Link } from "react-router-dom";
 import "../../MoviesApp.css";
 import { MoviePoster } from "../poster/MoviePoster";
 
@@ -46,6 +47,14 @@ export const PosterSection = ({ movieList }) => {
   return (
     <div className="poster-part">
       <div className="poster-user-icons">
+        <Link to="/search">
+          <img
+            src={`./assets/icons/Search.svg`}
+            alt=""
+            className="poster-icon-account search-icon"
+            style={{ transform: "scale(1.25)" }}
+          />
+        </Link>
         <img
           src={`./assets/icons/Account.svg`}
           alt=""

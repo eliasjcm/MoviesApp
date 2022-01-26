@@ -4,10 +4,11 @@ export const RatingStars = ({ numberStars }) => {
   // console.log("numberStars", numberStars);
   return (
     <div className="rating">
-      {[...Array(numberStars)].map((x, i) => {
+      {[...Array(numberStars || 0)].map((x, i) => {
         return (
           <img
-            src="./assets/icons/Star Fill.svg"
+            key={i}
+            src="/assets/icons/Star Fill.svg"
             alt=""
             className="rating-star"
           />

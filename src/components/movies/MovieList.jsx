@@ -8,6 +8,7 @@ import { MovieCard } from "./MovieCard";
 */
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import { ItemsCarousel } from "../ui/ItemsCarousel";
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -21,48 +22,14 @@ export const MovieList = ({ movieList }) => {
         original_title={movie.original_title}
         vote_average={movie.vote_average}
         onDragStart={handleDragStart}
+        id={movie.id}
       />
     );
   });
 
-  const renderNextButton = ({ isDisabled }) => {
-    return (
-      <div style={{ opacity: isDisabled ? "0.5" : 1 }}>
-        <img
-          src="./assets/icons/Arrow-Right.svg"
-          alt=""
-          className="carousel-arrow-right"
-        />
-      </div>
-    );
-  };
-
-  const renderLeftButton = ({ isDisabled }) => {
-    return (
-      <div style={{ opacity: isDisabled ? "0.5" : 1 }}>
-        <img
-          src="./assets/icons/Arrow-Left.svg"
-          alt=""
-          className="carousel-arrow-left"
-        />
-      </div>
-    );
-  };
-
   return (
     <div className="carousel movie-carousel">
-      <AliceCarousel
-        mouseTracking
-        items={movies}
-        infinite={true}
-        //   responsive={responsive}
-        disableDotsControls
-        // disableButtonsControls
-        autoWidth={true}
-        controlsStrategy="alternate"
-        renderNextButton={renderNextButton}
-        renderPrevButton={renderLeftButton}
-      />
+      <ItemsCarousel items={movies} />
       {/* <img
         src="./assets/icons/Arrow-Right.svg"
         alt=""

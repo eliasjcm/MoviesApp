@@ -1,0 +1,25 @@
+$frame-width: 4.5vw;
+$primary-color: #1f7a8a;
+$primary-color-light: #23c3e0;
+$secondary-color: #6750a4;
+$dark-gray: #1d1d1d;
+
+@mixin media-xs {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+a {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  margin: 0;
+}

@@ -1,0 +1,281 @@
+@import "include-media";
+@import "config";
+@import "components/cards";
+@import "components/search";
+@import "components/movie";
+
+$breakpoints: (
+  phone: 320px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
+@media (max-width: 1000px) {
+  :root {
+    $frame-width: 7.5vw;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    $frame-width: 8.5vw;
+  }
+}
+
+* {
+  font-family: "Roboto";
+  font-size: clamp(16px, 1.55vw, 1em);
+  box-sizing: border-box;
+}
+
+.main {
+  /* background-color: black; */
+  /* width: 100vw; */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #1d1d1d;
+  position: relative;
+}
+
+html,
+body,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.poster-movie {
+  width: 100%;
+  height: 648px;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+    url(https://image.tmdb.org/t/p/original/eENEf62tMXbhyVvdcXlnQz2wcuT.jpg); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  padding-left: $frame-width;
+}
+
+@media (max-width: 600px) {
+  .poster-movie {
+    width: 100%;
+    height: 350px;
+  }
+}
+.poster-user-icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  margin-top: 1.6em;
+  margin-right: 2em;
+}
+
+.poster-user-icons img {
+  margin-right: 2.5em;
+}
+
+.poster-part .alice-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-part .alice-carousel__dots {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  left: 0;
+}
+.poster-part .alice-carousel__dots .alice-carousel__dots-item:not(.__active) {
+  background-color: white;
+  opacity: 0.5;
+}
+.poster-part .alice-carousel__dots .alice-carousel__dots-item.__active {
+  background-color: white;
+}
+
+.poster-part .carousel-arrow-left {
+  margin-left: $frame-width;
+}
+
+.poster-movie-info {
+  position: absolute;
+  top: 20%;
+  margin-left: 10vw;
+  max-width: 60vw;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.poster-movie-info .poster-movie-name {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 0 0.5em;
+}
+
+.poster-movie-info .category-frame {
+  margin-bottom: 1em;
+}
+
+.poster-movie-info .rating {
+  margin: 1.5em 0 0.75em;
+}
+.poster-movie-info .poster-movie-watch-btn {
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  width: auto;
+  padding: 15px 50px;
+  box-shadow: 0px 16px 16px 4px rgba(0, 0, 0, 0.12);
+
+  /* border-color: linear-gradient(
+    135.87deg,
+    #0feffd 1.25%,
+    #ff00f5 51.73%,
+    rgba(15, 239, 253, 0.22) 77.22%
+  ); */
+}
+.poster-movie-ovw {
+  margin-bottom: 2em;
+  line-height: 1.6em;
+}
+
+.second-part {
+  margin-left: $frame-width;
+  background-color: #1d1d1d;
+}
+
+.section-header {
+  display: block;
+  color: white;
+  margin-left: 4em;
+  margin-bottom: 1.25em;
+}
+
+.shows-header {
+  margin-top: 0.75em;
+}
+
+ul.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.app-frame {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* height: 100vh; */
+  padding: 3em 0.75em;
+  width: $frame-width;
+  /* height: 100vh; */
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  @include media("<=tablet") {
+    & {
+      display: none;
+    }
+  }
+}
+
+.app-frame img + img {
+  margin-top: 5em;
+}
+
+.app-frame img {
+  width: 2.25em;
+  height: 2.25em;
+  cursor: pointer;
+}
+
+.app-frame img.frame-home-logo {
+  width: 5em;
+  height: 5em;
+}
+
+.category-frame {
+  color: #0feffd;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0 15px;
+  padding: 0.6em 0.9em;
+  text-align: center;
+  vertical-align: middle;
+  display: inline;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  * {
+    font-family: "Roboto";
+    font-size: 2.1vw;
+    box-sizing: border-box;
+  }
+}
+/* 
+.swiper-slide {
+  width: auto !important;
+  height: auto !important;
+}
+*/
+.swiper-container {
+  margin-left: 6vw !important;
+}
+
+.carousel {
+  /* position: relative; */
+  overflow: hidden;
+}
+
+.carousel-arrow-right {
+  position: absolute;
+  top: 40%;
+  transform: scale(3);
+  right: 5px;
+}
+
+.carousel-arrow-left {
+  position: absolute;
+  top: 40%;
+  transform: scale(3);
+  left: 10px;
+}
+
+.poster-movie-info .carousel-arrow-left {
+}
+
+.carousel-arrow-right:hover {
+  cursor: pointer;
+}
+
+.carousel-arrow-left:hover {
+  cursor: pointer;
+}
+
+.movie-carousel .alice-carousel__stage-item {
+  margin-right: 5px !important;
+}
+
+@media (max-width: 600px) {
+  .carousel-arrow-right {
+    position: absolute;
+    top: 40%;
+    transform: scale(1.5);
+    right: 5px;
+  }
+
+  .carousel-arrow-left {
+    position: absolute;
+    top: 40%;
+    transform: scale(1.5);
+    left: 10px;
+  }
+
+  .movie-carousel .alice-carousel__stage-item {
+    margin-right: 5px !important;
+  }
+}
