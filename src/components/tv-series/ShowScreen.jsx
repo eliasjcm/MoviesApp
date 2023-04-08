@@ -11,12 +11,12 @@ import { RatingStars } from "../ui/RatingStars";
 //   second;
 // };
 
-export const MovieScreen = () => {
-  const { movieId } = useParams();
+export const ShowScreen = () => {
+  const { showId } = useParams();
   const [statusState, setStatusState] = useState({
     status: "",
   });
-  const [movieState, setMovieState] = useState();
+  const [showState, setShowState] = useState();
 
   const [crewState, setCrewState] = useState([]);
 
@@ -26,20 +26,20 @@ export const MovieScreen = () => {
     });
     const fetchData = async () => {
       try {
-        const movieReq = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=83ca2fe5c9ab820ce8ef50911a50c826
+        const showReq = await fetch(
+          `https://api.themoviedb.org/3/tv/${showId}?api_key=83ca2fe5c9ab820ce8ef50911a50c826
         `
         );
-        if (!movieReq.ok) {
+        if (!showReq.ok) {
           setStatusState({
             status: "error",
           });
           return;
         }
-        const result = await movieReq.json();
+        const result = await showReq.json();
 
         console.log("result", result);
-        setMovieState(result);
+        setShowState(result);
 
         setStatusState({
           status: "loaded",
@@ -54,7 +54,7 @@ export const MovieScreen = () => {
       }
       try {
         const peopleReq = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=83ca2fe5c9ab820ce8ef50911a50c826
+          `https://api.themoviedb.org/3/movie/${showId}/credits?api_key=83ca2fe5c9ab820ce8ef50911a50c826
           `
         );
 
@@ -67,7 +67,7 @@ export const MovieScreen = () => {
     };
 
     fetchData();
-  }, [movieId]);
+  }, [showId]);
 
   return (
     <>
@@ -80,30 +80,30 @@ export const MovieScreen = () => {
               alt=""
               className="movie__loading-spinner"
             />
-            <p className="movie__loading-text">Your movie is loading.</p>
+            <p className="movie__loading-text">Your show is loading.</p>
           </div>
         )}
         {statusState.status === "loaded" && (
           <div
             className="movie-container"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/original${movieState.backdrop_path})`,
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/original${showState.backdrop_path})`,
             }}
           >
             {/* https://image.tmdb.org/t/p/original/zp33lkXqcZWyr7iMxzt3lNDtcPv.jpg */}
 
             <div className="movie__main-content">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movieState.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${showState.poster_path}`}
                 alt=""
                 className="movie__poster"
               />
               <div className="movie__info">
                 <h1 className="movie__title">
-                  {movieState.title}{" "}
-                  {`(${new Date(movieState.release_date).getFullYear()})`}
+                  {showState.title}{" "}
+                  {`(${new Date(showState.release_date).getFullYear()})`}
                 </h1>
-                <p className="movie__description">{movieState.overview}</p>
+                <p className="movie__description">{showState.overview}</p>
                 {/* <div className="movie__categories">
               <CategoryFrame
                 name={movieGenres.get(genre_ids ? genre_ids[0] : genre)}
@@ -119,11 +119,11 @@ export const MovieScreen = () => {
                 </div>
                 <div className="movie__rating">
                   <RatingStars
-                    numberStars={Math.round(movieState.vote_average / 2)}
+                    numberStars={Math.round(showState.vote_average / 2)}
                   />
                   <p className="movie__rating-info">
-                    {`${movieState.vote_average / 2}/5 (${
-                      movieState.vote_count
+                    {`${showState.vote_average / 2}/5 (${
+                      showState.vote_count
                     })`}
                   </p>
                 </div>
@@ -131,40 +131,40 @@ export const MovieScreen = () => {
 
                 <div className="movie__feature">
                   <span className="movie__feature-name">Budget: </span>
-                  {movieState.budget === null || movieState.budget === 0
+                  {showState.budget === null || showState.budget === 0
                     ? "Unknown"
                     : "$" +
-                      movieState.budget
+                      showState.budget
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                 </div>
-                {movieState.release_date && (
+                {showState.release_date && (
                   <div className="movie__feature">
                     <span className="movie__feature-name">Release Date: </span>
-                    {movieState.release_date}
+                    {showState.release_date}
                   </div>
                 )}
-                {movieState.runtime && (
+                {showState.runtime && (
                   <div className="movie__feature">
                     <span className="movie__feature-name">Runtime: </span>
-                    {movieState.runtime} minutes
+                    {showState.runtime} minutes
                   </div>
                 )}
-                {movieState.status && (
+                {showState.status && (
                   <div className="movie__feature">
                     <span className="movie__feature-name">Status: </span>
-                    {movieState.status}
+                    {showState.status}
                   </div>
                 )}
               </div>
-              {movieState.belongs_to_collection && (
+              {showState.belongs_to_collection && (
                 <div className="movie__collections">
                   <h2 className="movie__collections-title">Collection</h2>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${movieState.belongs_to_collection.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${showState.belongs_to_collection.poster_path}`}
                     alt=""
                   />
-                  {movieState.belongs_to_collection.name}
+                  {showState.belongs_to_collection.name}
                 </div>
               )}
             </div>
@@ -187,7 +187,7 @@ export const MovieScreen = () => {
               alt=""
               className="movie__error-spinner"
             />
-            <p className="movie__loading-text">Movie not found.</p>
+            <p className="movie__loading-text">Show not found.</p>
           </div>
         )}
       </div>

@@ -20,6 +20,7 @@
 }
 .movie__main-content {
   display: grid;
+  justify-items: center;
   grid-template-columns: 1.5fr 2.5fr 1fr;
   //   max-width: 80vw;
 

@@ -11,7 +11,7 @@ import { RatingStars } from "../ui/RatingStars";
 //   second;
 // };
 
-export const MovieScreen = () => {
+export const PersonScreen = () => {
   const { movieId } = useParams();
   const [statusState, setStatusState] = useState({
     status: "",
@@ -80,7 +80,7 @@ export const MovieScreen = () => {
               alt=""
               className="movie__loading-spinner"
             />
-            <p className="movie__loading-text">Your movie is loading.</p>
+            <p className="movie__loading-text">Your person is loading.</p>
           </div>
         )}
         {statusState.status === "loaded" && (
@@ -187,7 +187,7 @@ export const MovieScreen = () => {
               alt=""
               className="movie__error-spinner"
             />
-            <p className="movie__loading-text">Movie not found.</p>
+            <p className="movie__loading-text">Person not found.</p>
           </div>
         )}
       </div>

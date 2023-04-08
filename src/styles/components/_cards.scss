@@ -1,8 +1,11 @@
+$card-width: 292px;
+$card-height: 440px;
+
 .card {
   /* width: clamp(200px, 30vw, 300px); */
   /* height: clamp(300px, 40vh, 440px); */
-  width: 292px;
-  height: 440px;
+  width: $card-width;
+  height: $card-height;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: red;
@@ -93,12 +96,58 @@
 .show-card {
   width: 504px;
   height: 736px;
-  font-size: 2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  .search-results-list & {
+    width: $card-width;
+    height: $card-height;
+  }
+
+  *:not(div.search-results-list) > & {
+    font-size: 2rem;
+  }
+
   margin-bottom: 0.5em;
 
   .rating-star {
     transform: scale(1.2);
     /* margin-right: 20px; */
+  }
+
+  &__hover-info {
+    // display: none;
+    background: rgba($color: $secondary-color, $alpha: 0.5);
+    // opacity: 0.5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    transition: all 0.5s ease-in-out;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+
+    * {
+      margin: 0;
+    }
+
+    img {
+      transform: scale(2);
+      margin-top: 20px;
+    }
+  }
+
+  &:hover {
+    .show-card__hover-info {
+      // display: block;
+      top: 0;
+    }
   }
 
   @include media-xs {
@@ -121,6 +170,7 @@
 }
 
 .card-person {
+  cursor: pointer;
   padding: 0 5px 15px 10px;
   display: flex;
   flex-direction: column;
@@ -137,6 +187,7 @@
   background-position: center;
 
   &__name {
+    color: white;
   }
 
   &__character {
@@ -155,6 +206,40 @@
       &__character {
         font-size: 1.1rem;
       }
+    }
+  }
+
+  &__hover-info {
+    // display: none;
+    background: rgba($color: $secondary-color, $alpha: 0.5);
+    // opacity: 0.5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    transition: all 0.5s ease-in-out;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+
+    * {
+      margin: 0;
+    }
+
+    img {
+      transform: scale(2);
+      margin-top: 20px;
+    }
+  }
+
+  &:hover {
+    .card-person__hover-info {
+      // display: block;
+      top: 0;
     }
   }
 }

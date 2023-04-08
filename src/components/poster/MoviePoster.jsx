@@ -10,7 +10,7 @@ export const MoviePoster = ({ currentMovie }) => {
     <div
       className="poster-movie"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(https://image.tmdb.org/t/p/original${currentMovie.backdrop_path})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${currentMovie.backdrop_path})`,
       }}
     >
       <div className="poster-movie-info">

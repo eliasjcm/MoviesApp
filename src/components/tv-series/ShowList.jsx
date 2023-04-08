@@ -23,8 +23,8 @@ export const ShowList = ({ showList }) => {
       <ShowCard
         key={show.id}
         poster_path={show.poster_path}
-        genre={show.genre_ids[0]}
-        original_title={show.original_name}
+        genre_ids={show.genre_ids}
+        original_name={show.original_name}
         vote_average={show.vote_average}
         onDragStart={handleDragStart}
         id={show.id}

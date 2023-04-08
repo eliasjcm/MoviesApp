@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
 import { Waypoint } from "react-waypoint";
 import { MovieCard } from "../movies/MovieCard";
+import { PersonCard } from "../people/PersonCard";
+import { ShowCard } from "../tv-series/ShowCard";
 import { AppFrame } from "./AppFrame";
 // import queryString from "query-string";
 
@@ -30,6 +32,7 @@ export const SearchPage = () => {
   // }, []);
 
   const loadMoreItems = async () => {
+    console.log("loadMoreItems");
     const movieReq = await fetch(
       `https://api.themoviedb.org/3/search/${searchInfo.type}?api_key=83ca2fe5c9ab820ce8ef50911a50c826&query=${searchInfo.text}&page=${searchInfo.currentPage}`
     );
@@ -44,14 +47,12 @@ export const SearchPage = () => {
   };
 
   const handleSearch = async (e) => {
-    console.log("entro con", searchInfo.text, " ", searchInfo.type);
     if (searchInfo.text === "") return;
     setStatusState("loading");
     const movieReq = await fetch(
       `https://api.themoviedb.org/3/search/${searchInfo.type}?api_key=83ca2fe5c9ab820ce8ef50911a50c826&query=${searchInfo.text}&page=1`
     );
     const result = (await movieReq.json()).results;
-    console.log("fetched data", result);
     if (result && result.length > 0) {
       setSearchResultsState(result);
       setSearchInfo({ ...searchInfo, hasResults: true, currentPage: 1 });
@@ -155,11 +156,11 @@ export const SearchPage = () => {
             <div
               className={
                 "search-categories__category " +
-                (searchInfo.type === "people"
+                (searchInfo.type === "person"
                   ? "search-categories__category-active"
                   : "")
               }
-              onClick={() => handleTypeChange("people")}
+              onClick={() => handleTypeChange("person")}
             >
               <img
                 src={`./assets/icons/Account.svg`}
@@ -181,25 +182,59 @@ export const SearchPage = () => {
           </div>
         )}
         {statusState === "loaded" && (
-          <div className="search-results-list">
-            {searchResultsState.map((movie, idx) => {
-              return (
-                movie.poster_path && (
-                  <Waypoint
-                    key={idx}
-                    onEnter={async () => {
-                      if (
-                        idx === searchResultsState.length - 6 &&
-                        searchInfo.hasNextPage
-                      ) {
-                        console.log("Llego al ultimo");
-                        await loadMoreItems();
-                      }
-                    }}
-                  >
-                    <MovieCard {...movie} />
-                  </Waypoint>
-                )
+          <div className={`search-results-list ${searchInfo.type}`}>
+            {searchResultsState.map((result, idx) => {
+              console.log(result);
+              return searchInfo.type === "movie" ? (
+                <Waypoint
+                  key={idx}
+                  onEnter={async () => {
+                    if (
+                      idx === searchResultsState.length - 6 &&
+                      searchInfo.hasNextPage
+                    ) {
+                      console.log("Llego al ultimo");
+                      await loadMoreItems();
+                    }
+                  }}
+                >
+                  <MovieCard {...result} />
+                </Waypoint>
+              ) : searchInfo.type === "tv" ? (
+                <Waypoint
+                  key={idx}
+                  onEnter={async () => {
+                    if (
+                      idx === searchResultsState.length - 6 &&
+                      searchInfo.hasNextPage
+                    ) {
+                      console.log("Llego al ultimo");
+                      await loadMoreItems();
+                    }
+                  }}
+                >
+                  <ShowCard {...result} />
+                </Waypoint>
+              ) : (
+                <Waypoint
+                  key={idx}
+                  onEnter={async () => {
+                    if (
+                      idx === searchResultsState.length - 6 &&
+                      searchInfo.hasNextPage
+                    ) {
+                      console.log("Llego al ultimo");
+                      await loadMoreItems();
+                    }
+                  }}
+                >
+                  <PersonCard
+                    name={result.name}
+                    character={result.known_for_department}
+                    profile_path={result.profile_path}
+                    id={result.id}
+                  />
+                </Waypoint>
               );
             })}
           </div>
