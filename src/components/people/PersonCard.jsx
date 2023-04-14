@@ -8,6 +8,7 @@ export const PersonCard = ({ character, name, profile_path, innerRef, id }) => {
     console.log(id);
     navigate("/person/" + id);
   };
+  
   return (
     <div
       onClick={handleClick}
@@ -25,7 +26,7 @@ export const PersonCard = ({ character, name, profile_path, innerRef, id }) => {
       <div className="card-person__name">{name}</div>
       {character && <div className="card-person__character">{character}</div>}
       <div className="card-person__hover-info">
-        <p>View show info</p>
+        <p>View Person info</p>
         <img
           src="/assets/icons/Arrow-Right.svg"
           alt=""

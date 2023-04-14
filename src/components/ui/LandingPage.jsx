@@ -10,6 +10,7 @@ export const LandingPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [showList, setShowList] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchWork = async () => {
       const movieReq = await fetch(
@@ -22,30 +23,39 @@ export const LandingPage = () => {
       );
       setShowList((await showReq.json()).results);
       setLoading(false);
+      document.title = "Home"
     };
     fetchWork();
   }, []);
+
   console.log("RENDERING");
   console.log(movieList);
-  return (
-    !loading && (
-      <div className="main">
-        <PosterSection movieList={movieList} />
-        <AppFrame />
+  return loading ? (
+    <div className="main-loading-screen">
+      <img
+        src={`/assets/icons/spinner-solid.svg`}
+        alt=""
+        className="main__loading-spinner"
+      />
+      <p className="main__loading-text">Page Loading...</p>
+    </div>
+  ) : (
+    <div className="main">
+      <PosterSection movieList={movieList} />
+      <AppFrame />
 
-        {/* sadsdadsssssssssssssssss
+      {/* sadsdadsssssssssssssssss
         <CategoryFrame name="Science Fiction" /> */}
-        <div className="second-part">
-          <span className="section-header movies-header">
-            New releases &nbsp;&nbsp;&nbsp; &gt;
-          </span>
-          <MovieList movieList={movieList}></MovieList>
-          <span className="section-header shows-header" id="shows-header">
-            Featured TV shows &nbsp;&nbsp;&nbsp; &gt;
-          </span>
-          <ShowList showList={showList} />
-        </div>
+      <div className="second-part">
+        <span className="section-header movies-header">
+          New releases &nbsp;&nbsp;&nbsp; &gt;
+        </span>
+        <MovieList movieList={movieList}></MovieList>
+        <span className="section-header shows-header" id="shows-header">
+          Featured TV shows &nbsp;&nbsp;&nbsp; &gt;
+        </span>
+        <ShowList showList={showList} />
       </div>
-    )
+    </div>
   );
 };

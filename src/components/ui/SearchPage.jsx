@@ -8,6 +8,7 @@ import { AppFrame } from "./AppFrame";
 // import queryString from "query-string";
 
 export const SearchPage = () => {
+  
   // const navigate = useNavigate();
   // const location = useLocation();
 
@@ -16,7 +17,7 @@ export const SearchPage = () => {
   const [searchResultsState, setSearchResultsState] = useState([]);
   const [searchInfo, setSearchInfo] = useState({
     text: "",
-    type: "movie",
+    type: localStorage.getItem("lastSearchInfoType") || "movie",
     hasResults: true,
     currentPage: 1,
     hasNextPage: true,
@@ -30,6 +31,10 @@ export const SearchPage = () => {
   //   console.log("Holas");
   //   setSearchInfo({ ...searchInfo, type: type, text: "spid" });
   // }, []);
+
+  useEffect(() => {
+    document.title = "Search";
+  }, []);
 
   const loadMoreItems = async () => {
     console.log("loadMoreItems");
@@ -83,6 +88,8 @@ export const SearchPage = () => {
       await handleSearch();
     };
     fetchData();
+    // update lastSearchInfoType localStorage
+    localStorage.setItem("lastSearchInfoType", searchInfo.type);
   }, [searchInfo.type]);
 
   return (
@@ -96,7 +103,13 @@ export const SearchPage = () => {
             <input
               className="search-input"
               type="text"
-              placeholder="Input Text..."
+              placeholder={
+                searchInfo.type === "movie"
+                  ? "Search for a movie"
+                  : searchInfo.type === "tv"
+                  ? "Search for a TV show"
+                  : "Search for a person"
+              }
               value={searchInfo.text}
               onChange={(e) =>
                 setSearchInfo({

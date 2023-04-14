@@ -1,7 +1,7 @@
 // import { movies } from "./data/movies";
 // import { shows } from "./data/shows";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MovieScreen } from "./components/movies/MovieScreen";
 import { PersonScreen } from "./components/people/PersonScreen";
 import { ShowScreen } from "./components/tv-series/ShowScreen";
@@ -17,6 +17,7 @@ export const MoviesApp = () => {
         <Route path="/movies/:movieId" element={<MovieScreen />} />
         <Route path="/shows/:showId" element={<ShowScreen />} />
         <Route path="/person/:personId" element={<PersonScreen />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

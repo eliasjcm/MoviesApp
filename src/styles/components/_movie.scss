@@ -161,3 +161,420 @@
     }
   }
 }
+
+.movie__seasons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+}
+
+.movie__season {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  border: 1px solid $primary-color-light;
+  border-radius: 5px;
+  font-size: 1.6rem;
+
+  .movie__loading-container,
+  .movie__error-container {
+    height: 20vh;
+    &-text {
+      font-size: 1.6rem;
+    }
+  }
+
+  &-info {
+    padding: 20px 50px 20px 30px;
+
+    // 137px
+    display: flex;
+    align-items: flex-start;
+
+    &__img {
+      width: 8vw;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    &__text {
+      &__title {
+        margin: 0;
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+
+      &__episodes-count {
+        color: $primary-color-light;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+
+      &__description {
+        margin-top: 10px;
+        font-size: 1.2rem;
+        font-weight: 100;
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+
+    button {
+      cursor: pointer;
+      background-color: unset;
+      border: none;
+      font-size: 1.1rem;
+      color: $primary-color-light;
+    }
+  }
+}
+
+@include media("<=tablet") {
+  .movie__seasons {
+    row-gap: 30px;
+  }
+
+  .movie__season {
+    border: 1px solid $primary-color-light;
+    border-radius: 5px;
+    font-size: 1.6rem;
+
+    &-info {
+      padding: 20px 20px 20px 20px;
+
+      // 137px
+      display: flex;
+      &__img {
+        width: 23vw;
+      }
+
+      &__text {
+        &__episodes-count {
+          font-size: 0.9rem;
+          margin-top: 5px;
+        }
+
+        &__description {
+          margin-top: 10px;
+          font-size: 1.3rem;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+}
+.movie__season-episodes {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding-top: 20px;
+}
+
+.movie__season-episode {
+  display: flex;
+  padding: 0 75px 0 75px;
+
+  &__img {
+    width: 20vw;
+    height: auto;
+  }
+  &__text {
+    width: 100%;
+    margin-left: 20px;
+
+    &__title {
+      display: flex;
+      align-items: center;
+
+      &__name {
+        margin: 0;
+        font-size: 1.6rem;
+        font-weight: 600;
+
+        &-number {
+          font-weight: 400;
+          color: $primary-color-light;
+          margin-right: 10px;
+          font-size: 90%;
+        }
+
+        &-date {
+          color: #b3b3b3;
+          font-size: 75%;
+          vertical-align: middle;
+          font-weight: 400;
+          margin-left: 10px;
+        }
+      }
+
+      &__duration {
+        margin: 0 0 0 auto;
+        font-size: 1.2rem;
+        color: $primary-color-light;
+      }
+    }
+
+    &__description {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      font-weight: 100;
+    }
+  }
+}
+
+.movie__season-divider {
+  width: 100%;
+  height: 1px;
+  background-color: $primary-color-light;
+  margin-top: 20px 0;
+}
+
+.movie__season-mid-divider {
+  width: 95%;
+  height: 1px;
+  background-color: $primary-color-light;
+  margin: 0 auto;
+}
+
+/**********************************************************/
+
+.movie-page {
+  width: 100%;
+  padding-left: $frame-width;
+  background-color: #1d1d1d;
+  min-height: 100vh;
+  height: 100%;
+  color: white;
+  //   font-weight: 100;
+  overflow: hidden;
+}
+
+.movie-container {
+  padding: 3.5em 3em;
+  // background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
+  //   url("https://image.tmdb.org/t/p/original/zp33lkXqcZWyr7iMxzt3lNDtcPv.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.movie__main-content {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1.5fr 2.5fr 1fr;
+  //   max-width: 80vw;
+
+  &::after {
+    background-color: $primary-color;
+    // height: 100vh;
+    // width: 100vw;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .movie__poster {
+    // width: 100%;
+    max-height: 65vh;
+    width: auto;
+  }
+
+  .movie__info {
+    margin: 0 100px 0 30px;
+    font-size: 1.6rem;
+    font-weight: 100;
+
+    .movie__title {
+      margin-top: 0;
+      font-size: 2.1rem;
+      color: $primary-color-light;
+    }
+    .movie__description {
+      margin: initial;
+      margin-top: 1.5em;
+    }
+
+    .movie__categories {
+      margin: 20px 0 7.5px;
+
+      * + * {
+        margin-left: 1.5em;
+      }
+    }
+
+    .movie__rating {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+
+      &-info {
+        font-size: 0.7em;
+        margin-left: 15px;
+      }
+    }
+
+    .rating-star {
+      width: 0.8em;
+    }
+
+    .movie__feature {
+      font-weight: initial;
+
+      &-name {
+        color: $primary-color-light;
+      }
+    }
+  }
+
+  .movie__collections {
+    text-align: end;
+    margin-left: auto;
+    max-width: 10vw;
+
+    &-title {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@include media("<=tablet") {
+  .movie-page {
+    padding: 0;
+  }
+
+  .movie-container {
+    padding: 0;
+  }
+
+  .movie__main-content {
+    // background-color: red;
+    grid-template-columns: 1fr;
+
+    .movie__poster {
+      width: 100%;
+      object-fit: cover;
+      // max-height: 65vh;
+      // width: auto;
+    }
+
+    .movie__info {
+      * {
+        font-size: 1.7rem;
+      }
+      margin: 0;
+
+      .movie__title {
+        margin-top: 20px;
+        font-size: 2.7rem;
+      }
+      .movie__description {
+      }
+    }
+  }
+}
+
+.movie__features {
+  margin-top: 30px;
+}
+
+.movie__related {
+  &-title {
+    display: flex;
+    margin-bottom: 20px;
+
+    &__text {
+      font-size: 1.6rem;
+    }
+
+    select#movies {
+      margin-left: auto;
+      background-color: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      outline: none;
+      font-size: 1.3rem;
+
+      option {
+        color: black;
+      }
+      // padding-right: ;
+    }
+  }
+}
+
+.person__movies-container {
+  display: grid;
+  justify-items: center;
+  // flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  row-gap: 30px;
+  column-gap: 15px;
+  // padding: 0 5vw;
+  @include media-xs {
+    grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
+  }
+
+  .person__movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    .card-movie {
+      // ratio: 200/272;
+      width: 250px;
+      height: 350px;
+    }
+
+    &__character {
+      text-align: end;
+      .character-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: $primary-color-light;
+      }
+    }
+  }
+}
+
+ul[role="navigation"] {
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  margin: 20px auto 0 auto;
+
+  li {
+    list-style: none;
+
+    &.disabled a {
+      cursor: not-allowed;
+      background-color: rgb(129, 129, 129);
+      color: rgb(255, 255, 255);
+    }
+    &.active a {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  li a {
+    cursor: pointer;
+    border: 1px solid $primary-color-light;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  li + li {
+    margin-left: 20px;
+  }
+}

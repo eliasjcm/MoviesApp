@@ -1,24 +1,66 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { MovieCard } from "../movies/MovieCard";
 // import { movieGenres } from "../../data/movies";
 import { PersonCard } from "../people/PersonCard";
 import { AppFrame } from "../ui/AppFrame";
 import { CategoryFrame } from "../ui/CategoryFrame";
 import { ItemsCarousel } from "../ui/ItemsCarousel";
 import { RatingStars } from "../ui/RatingStars";
+import { PersonMovies } from "./PersonMovies";
+import { PersonProductionsGroup } from "./PersonProductionsGroup";
 
 // const hasActors = (list) => {
 //   second;
 // };
 
+const mostFamousProductionImage = (movies, shows) => {
+  // movies should be movies.cast and movies.crew
+  const moviesList = movies.cast.concat(movies.crew);
+  // shows should be shows.cast and shows.crew
+  const showsList = shows.cast.concat(shows.crew);
+
+  const moviesWithBackdrop = moviesList.filter((movie) => movie.backdrop_path);
+  const showsWithBackdrop = showsList.filter((show) => show.backdrop_path);
+
+  // sort by popularity
+  moviesWithBackdrop.sort((a, b) => b.popularity - a.popularity);
+  showsWithBackdrop.sort((a, b) => b.popularity - a.popularity);
+
+  // get the most popular movie/show
+  const mostPopularMovie = moviesWithBackdrop[0];
+  const mostPopularShow = showsWithBackdrop[0];
+
+  if (!mostPopularMovie && !mostPopularShow) {
+    return null;
+  }
+
+  if (!mostPopularMovie) {
+    return mostPopularShow.backdrop_path;
+  }
+
+  if (!mostPopularShow) {
+    return mostPopularMovie.backdrop_path;
+  }
+
+  // compare popularity
+  if (mostPopularMovie.popularity > mostPopularShow.popularity) {
+    return mostPopularMovie.backdrop_path;
+  } else {
+    return mostPopularShow.backdrop_path;
+  }
+};
+
 export const PersonScreen = () => {
-  const { movieId } = useParams();
+  const { personId } = useParams();
   const [statusState, setStatusState] = useState({
     status: "",
   });
-  const [movieState, setMovieState] = useState();
-
-  const [crewState, setCrewState] = useState([]);
+  const [personState, setPersonState] = useState();
+  const [moviesState, setMoviesState] = useState();
+  const [showsState, setShowsState] = useState();
+  const [moviesStateFilter, setMoviesStateFilter] = useState("cast");
+  const [showsStateFilter, setShowsStateFilter] = useState("cast");
 
   useEffect(() => {
     setStatusState({
@@ -26,48 +68,62 @@ export const PersonScreen = () => {
     });
     const fetchData = async () => {
       try {
-        const movieReq = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=83ca2fe5c9ab820ce8ef50911a50c826
+        const personReq = await fetch(
+          `https://api.themoviedb.org/3/person/${personId}?api_key=83ca2fe5c9ab820ce8ef50911a50c826
         `
         );
-        if (!movieReq.ok) {
+        if (!personReq.ok) {
           setStatusState({
             status: "error",
           });
           return;
         }
-        const result = await movieReq.json();
+        const result = await personReq.json();
 
         console.log("result", result);
-        setMovieState(result);
+        setPersonState(result);
+
+        document.title = result.name;
+
+        const moviesReq = await fetch(
+          `https://api.themoviedb.org/3/person/${personId}/movie_credits?api_key=83ca2fe5c9ab820ce8ef50911a50c826`
+        );
+        if (!moviesReq.ok) {
+          setStatusState({
+            status: "error",
+          });
+          return;
+        }
+        const moviesResult = await moviesReq.json();
+        setMoviesState(moviesResult);
+        console.log("moviesResult", moviesResult);
+
+        const showsReq = await fetch(
+          `https://api.themoviedb.org/3/person/${personId}/tv_credits?api_key=83ca2fe5c9ab820ce8ef50911a50c826`
+        );
+        if (!showsReq.ok) {
+          setStatusState({
+            status: "error",
+          });
+          return;
+        }
+        const showsResult = await showsReq.json();
+        setShowsState(showsResult);
+        console.log("showsResult", showsResult);
 
         setStatusState({
           status: "loaded",
         });
-
-        document.title = result.title;
       } catch (err) {
         console.log("ErrorSA");
         setStatusState({
           status: "error",
         });
       }
-      try {
-        const peopleReq = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=83ca2fe5c9ab820ce8ef50911a50c826
-          `
-        );
-
-        const resultPeople = await peopleReq.json();
-        console.log("resultPeople", resultPeople);
-        setCrewState(resultPeople.cast);
-      } catch (err) {
-        console.log("ErrorSA");
-      }
     };
 
     fetchData();
-  }, [movieId]);
+  }, [personId]);
 
   return (
     <>
@@ -87,99 +143,65 @@ export const PersonScreen = () => {
           <div
             className="movie-container"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/original${movieState.backdrop_path})`,
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/original${mostFamousProductionImage(
+                moviesState,
+                showsState
+              )})`,
+              backgroundAttachment: "fixed",
             }}
           >
             {/* https://image.tmdb.org/t/p/original/zp33lkXqcZWyr7iMxzt3lNDtcPv.jpg */}
 
             <div className="movie__main-content">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movieState.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${personState.profile_path}`}
                 alt=""
                 className="movie__poster"
               />
               <div className="movie__info">
-                <h1 className="movie__title">
-                  {movieState.title}{" "}
-                  {`(${new Date(movieState.release_date).getFullYear()})`}
-                </h1>
-                <p className="movie__description">{movieState.overview}</p>
-                {/* <div className="movie__categories">
-              <CategoryFrame
-                name={movieGenres.get(genre_ids ? genre_ids[0] : genre)}
-                className="card-category"
-              />
-            </div>
-            <RatingStars numberStars={Math.round(vote_average / 2)} /> */}
-
-                {/***********************/}
-                <div className="movie__categories">
-                  <CategoryFrame name={"Action"} className="card-category" />
-                  <CategoryFrame name={"Comics"} className="card-category" />
+                <h1 className="movie__title">{personState.name}</h1>
+                <p className="movie__description">
+                  {personState.biography.split("\n\n").slice(0, 1).join("\n\n")}
+                </p>
+                <div className="movie__features">
+                  {personState?.place_of_birth && (
+                    <div className="movie__feature">
+                      <span className="movie__feature-name">
+                        Place of Birth:{" "}
+                      </span>
+                      {personState.place_of_birth}
+                    </div>
+                  )}
+                  {personState?.birthday && (
+                    <div className="movie__feature">
+                      <span className="movie__feature-name">Birthday: </span>
+                      {personState.birthday}
+                    </div>
+                  )}
+                  {personState?.status && (
+                    <div className="movie__feature">
+                      <span className="movie__feature-name">Status: </span>
+                      {personState.status}
+                    </div>
+                  )}
                 </div>
-                <div className="movie__rating">
-                  <RatingStars
-                    numberStars={Math.round(movieState.vote_average / 2)}
-                  />
-                  <p className="movie__rating-info">
-                    {`${movieState.vote_average / 2}/5 (${
-                      movieState.vote_count
-                    })`}
-                  </p>
-                </div>
-                {/***********************/}
-
-                <div className="movie__feature">
-                  <span className="movie__feature-name">Budget: </span>
-                  {movieState.budget === null || movieState.budget === 0
-                    ? "Unknown"
-                    : "$" +
-                      movieState.budget
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                </div>
-                {movieState.release_date && (
-                  <div className="movie__feature">
-                    <span className="movie__feature-name">Release Date: </span>
-                    {movieState.release_date}
-                  </div>
-                )}
-                {movieState.runtime && (
-                  <div className="movie__feature">
-                    <span className="movie__feature-name">Runtime: </span>
-                    {movieState.runtime} minutes
-                  </div>
-                )}
-                {movieState.status && (
-                  <div className="movie__feature">
-                    <span className="movie__feature-name">Status: </span>
-                    {movieState.status}
-                  </div>
-                )}
               </div>
-              {movieState.belongs_to_collection && (
-                <div className="movie__collections">
-                  <h2 className="movie__collections-title">Collection</h2>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movieState.belongs_to_collection.poster_path}`}
-                    alt=""
-                  />
-                  {movieState.belongs_to_collection.name}
-                </div>
-              )}
             </div>
-            {crewState && crewState !== [] && (
-              <div className="movie__crew">
-                <h3 className="movie__crew-title">Crew</h3>
-                <ItemsCarousel
-                  items={crewState.slice(0, 15).map((person) => {
-                    return <PersonCard {...person} />;
-                  })}
-                />
-              </div>
-            )}
+            <PersonProductionsGroup
+              productionState={moviesState}
+              productionStateFilter={moviesStateFilter}
+              setProductionStateFilter={setMoviesStateFilter}
+              type="MOVIE"
+            />
+            <PersonProductionsGroup
+              productionState={showsState}
+              productionStateFilter={showsStateFilter}
+              setProductionStateFilter={setShowsStateFilter}
+              type="TV"
+            />
           </div>
         )}
+
         {statusState.status === "error" && (
           <div className="movie__error-container">
             <img

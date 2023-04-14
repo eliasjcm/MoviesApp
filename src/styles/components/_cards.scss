@@ -100,7 +100,7 @@ $card-height: 440px;
   position: relative;
   overflow: hidden;
 
-  .search-results-list & {
+  .search-results-list &, .person__movies-container & {;
     width: $card-width;
     height: $card-height;
   }
@@ -185,6 +185,8 @@ $card-height: 440px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
+  overflow: hidden;
 
   &__name {
     color: white;
@@ -224,7 +226,7 @@ $card-height: 440px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
 
     * {
       margin: 0;
