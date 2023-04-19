@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# MoviesApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Movies and TV shows applications that allows users to search for movies, TV shows and actors, and view details about them.
 
-## Available Scripts
+Live: https://brave-flower-083cf0410.azurestaticapps.net/
 
-In the project directory, you can run:
+# Technologies Used
 
-### `npm start`
+* **React, React Router, SCSS**
+* Hosted using Microsoft Azure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Features and Images
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Landing Page
 
-### `npm test`
+Displays information about popular movies and TV shows
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://user-images.githubusercontent.com/17099638/232988350-9f021c13-1239-42db-a784-54362e4eb89a.png)
 
-### `npm run build`
+![image](https://user-images.githubusercontent.com/17099638/232988408-381a1917-618e-4b8f-bee3-aab2e196e20d.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Search Screen
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Allows users to search for movies, TV shows and people.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://user-images.githubusercontent.com/17099638/232988558-ca8a582d-daf6-47d2-9e5b-e937331f3ab9.png)
 
-### `npm run eject`
+![image](https://user-images.githubusercontent.com/17099638/232988752-b2b38964-b958-4b1b-b763-a3eec208423e.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image](https://user-images.githubusercontent.com/17099638/232988822-49c7cf02-a02f-48bf-90e5-34ec2b396fe6.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Movie Screen
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Display relevant information about a movie and its cast
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![image](https://user-images.githubusercontent.com/17099638/232990283-ab4bfdc6-fb89-4f28-8e29-06967f9009a0.png)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## TV Show Screen
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Display relevant information about a TV show and its cast. Seasons and their episodes are also displayed.
+![image](https://user-images.githubusercontent.com/17099638/232989902-6a2e4839-be26-43f5-8823-3ad5e3827e75.png)
 
-### Code Splitting
+![image](https://user-images.githubusercontent.com/17099638/232989925-e63b98ba-595c-4f8a-b410-dace88764f29.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image](https://user-images.githubusercontent.com/17099638/232989966-051d1520-b03c-4125-86d9-5d8157de5afd.png)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Person Screen
 
-### Making a Progressive Web App
+Display relevant information about a person, movies and where they have participated either as cast or crew (custom filter)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![image](https://user-images.githubusercontent.com/17099638/232989627-e04afe5e-050f-49cc-adaf-316bb4148d95.png)
 
-### Advanced Configuration
+![image](https://user-images.githubusercontent.com/17099638/232989650-83b01f5d-8284-4933-b583-8b588b672931.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://user-images.githubusercontent.com/17099638/232989664-d5f92a49-9588-4256-b3f1-d1da436e0788.png)
