@@ -1,6 +1,6 @@
 # MoviesApp
 
-Movies and TV shows applications that allows users to search for movies, TV shows and actors, and view details about them.
+Movies and TV shows web application that allows users to search for movies, TV shows and actors, and view details about them.
 
 Live: https://brave-flower-083cf0410.azurestaticapps.net/
 
