@@ -41,6 +41,7 @@
   }
 
   .movie__info {
+    justify-self: baseline;
     margin: 0 100px 0 30px;
     font-size: 1.6rem;
     font-weight: 100;
@@ -490,14 +491,21 @@
       font-size: 1.6rem;
     }
 
+    &__type {
+      align-self: center;
+      margin-left: 10px;
+      color: $primary-color-light;
+      font-size: 1.6rem;
+    }
+    
     select#movies {
       margin-left: auto;
+      font-size: 1.3rem;      
       background-color: transparent;
       border: none;
       color: white;
       cursor: pointer;
       outline: none;
-      font-size: 1.3rem;
 
       option {
         color: black;
@@ -524,10 +532,12 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
-    .card-movie {
+
+    .card-movie, .show-card {
       // ratio: 200/272;
       width: 250px;
       height: 350px;
+      font-size: 1.2rem;
     }
 
     &__character {

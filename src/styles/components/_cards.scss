@@ -100,13 +100,17 @@ $card-height: 440px;
   position: relative;
   overflow: hidden;
 
-  .search-results-list &, .person__movies-container & {;
+  .search-results-list &, .person__movies-container & {
     width: $card-width;
     height: $card-height;
   }
 
   *:not(div.search-results-list) > & {
     font-size: 2rem;
+  }
+
+  .person__movies-container & {
+    background-color: red;
   }
 
   margin-bottom: 0.5em;

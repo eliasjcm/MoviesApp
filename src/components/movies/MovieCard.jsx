@@ -27,7 +27,7 @@ export const MovieCard = ({
       className="card card-movie"
       style={{
         backgroundImage: poster_path
-          ? `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(https://image.tmdb.org/t/p/w500${poster_path})`
+          ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(https://image.tmdb.org/t/p/w500${poster_path})`
           : `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(https://image.shutterstock.com/image-vector/silhouette-missing-person-stamp-260nw-752963539.jpg)`,
         // margin: 0,
         padding: 0,

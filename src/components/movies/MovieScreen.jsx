@@ -88,6 +88,7 @@ export const MovieScreen = () => {
             className="movie-container"
             style={{
               backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/original${movieState.backdrop_path})`,
+              backgroundAttachment: "fixed",
             }}
           >
             {/* https://image.tmdb.org/t/p/original/zp33lkXqcZWyr7iMxzt3lNDtcPv.jpg */}

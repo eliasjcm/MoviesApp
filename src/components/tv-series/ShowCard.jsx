@@ -26,7 +26,7 @@ export const ShowCard = ({
       className="card show-card"
       onClick={handleClick}
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(https://image.tmdb.org/t/p/w500${poster_path})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(https://image.tmdb.org/t/p/w500${poster_path})`,
         margin: 0,
         padding: 0,
       }}

@@ -233,7 +233,7 @@ export const ShowScreen = () => {
             )}
             {showState.seasons && showState.seasons !== [] && (
               <div className="movie__seasons">
-                <h3 className="movie__seasons-title">Season</h3>
+                <h3 className="movie__seasons-title">Seasons</h3>
                 {Object.keys(showState.seasons).map((season_key, idx) => {
                   const season = showState.seasons[season_key];
                   const seasonNumber = season.season_number;
@@ -243,7 +243,9 @@ export const ShowScreen = () => {
                       <div className="movie__season-info">
                         <img
                           className="movie__season-info__img"
-                          src={`https://image.tmdb.org/t/p/w500${season.poster_path}`}
+                          src={season?.poster_path ?
+                            `https://image.tmdb.org/t/p/w500${season.poster_path}`
+                            : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
                           alt=""
                         />
                         <div className="movie__season-info__text">
@@ -276,7 +278,8 @@ export const ShowScreen = () => {
                                       <div className="movie__season-episode">
                                         <img
                                           className="movie__season-episode__img"
-                                          src={`https://image.tmdb.org/t/p/w500${episode.still_path}`}
+                                          src={episode?.still_path ? `https://image.tmdb.org/t/p/w500${episode.still_path}`
+                                            : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
                                           alt=""
                                         />
                                         <div className="movie__season-episode__text">
