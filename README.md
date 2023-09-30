@@ -48,7 +48,7 @@ Display relevant information about a TV show and its cast. Seasons and their epi
 
 ## Person Screen
 
-Display relevant information about a person, movies and where they have participated either as cast or crew (custom filter)
+Display relevant information about a person, movies and where they have participated either as cast or crew (custom filter).
 
 ![image](https://user-images.githubusercontent.com/17099638/232989627-e04afe5e-050f-49cc-adaf-316bb4148d95.png)
 
