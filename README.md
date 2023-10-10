@@ -2,12 +2,12 @@
 
 Movies and TV shows web application that allows users to search for movies, TV shows and actors, and view details about them.
 
-Live: https://brave-flower-083cf0410.azurestaticapps.net/
+Live: https://movies-app-eliasjcm.netlify.app/
 
 # Technologies Used
 
 * **React, React Router, SCSS**
-* Hosted using Microsoft Azure
+* Hosted using Netlify
 
 # Features and Images
 
